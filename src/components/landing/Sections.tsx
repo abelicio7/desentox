@@ -5,11 +5,11 @@ import { GREETING, whatsappUrl, calcTotal } from "@/lib/order";
 import { CtaLink, SectionTitle, WhatsAppIcon } from "./ui";
 import logoWide from "@/assets/desentox-logo-wide.png.asset.json";
 import logo from "@/assets/desentox-logo.png.asset.json";
-import sinkSlow from "@/assets/sink-slow.jpg";
-import pipeResidue from "@/assets/pipe-residue.jpg";
-import drainOdor from "@/assets/drain-odor.jpg";
-import homeSink from "@/assets/home-sink.jpg";
-import bizKitchen from "@/assets/business-kitchen.jpg";
+const sinkSlow = "/images/sink-slow.jpg";
+const pipeResidue = "/images/pipe-residue.jpg";
+const drainOdor = "/images/drain-odor.jpg";
+const homeSink = "/images/home-sink.jpg";
+const bizKitchen = "/images/business-kitchen.jpg";
 
 const nav = [
   { href: "#beneficios", label: "Benefícios" },
