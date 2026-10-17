@@ -1,12 +1,12 @@
 import { useState, type ReactNode } from "react";
 import { AlertCircle, Truck } from "lucide-react";
 import { STORE, formatMT } from "@/config/store";
-import { buildOrderMessage, calcTotal, isFreeDeliveryArea, validateOrder, whatsappUrl, type OrderData } from "@/lib/order";
+import { buildOrderMessage, calcTotal, isFreeDeliveryArea, validateOrder, whatsappUrl, type OrderData, type OrderErrors } from "@/lib/order";
 import { WhatsAppIcon, SectionTitle } from "./ui";
 
 const input = "w-full rounded-xl border border-input bg-background px-4 py-3 text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 
-function Field({ id, label, error, children }: { id: string; label: string; error?: string; children: ReactNode }) {
+function Field({ id, label, error, children }: { id: string; label: string; error?: string | undefined; children: ReactNode }) {
   return (
     <div>
       <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-forest">{label}</label>
@@ -18,7 +18,7 @@ function Field({ id, label, error, children }: { id: string; label: string; erro
 
 export function OrderForm({ qty, setQty }: { qty: number; setQty: (n: number) => void }) {
   const [d, setD] = useState({ name: "", phone: "", locality: "", neighborhood: "", address: "", notes: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<OrderErrors>({});
   const [fatal, setFatal] = useState("");
   const [opened, setOpened] = useState(false);
   const set = (k: keyof typeof d) => (e: { target: { value: string } }) => setD({ ...d, [k]: e.target.value });
@@ -30,7 +30,7 @@ export function OrderForm({ qty, setQty }: { qty: number; setQty: (n: number) =>
     const errs = validateOrder(data);
     setErrors(errs);
     if (Object.keys(errs).length) {
-      document.getElementById(Object.keys(errs)[0])?.focus();
+      document.getElementById(Object.keys(errs)[0] ?? "")?.focus();
       return;
     }
     try {
@@ -43,7 +43,7 @@ export function OrderForm({ qty, setQty }: { qty: number; setQty: (n: number) =>
     }
   };
 
-  const aria = (k: string) => ({ "aria-invalid": !!errors[k], "aria-describedby": errors[k] ? `${k}-err` : undefined });
+  const aria = (k: keyof OrderErrors) => ({ "aria-invalid": !!errors[k], "aria-describedby": errors[k] ? `${k}-err` : undefined });
   const free = isFreeDeliveryArea(d.locality);
 
   return (

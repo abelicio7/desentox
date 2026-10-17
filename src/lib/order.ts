@@ -15,8 +15,9 @@ export const calcTotal = (qty: number) => qty * STORE.unitPrice;
 export const isFreeDeliveryArea = (locality: string) =>
   (STORE.freeDeliveryAreas as readonly string[]).includes(locality);
 
-export function validateOrder(d: OrderData): Record<string, string> {
-  const e: Record<string, string> = {};
+export type OrderErrors = Partial<Record<"name" | "phone" | "locality" | "neighborhood" | "address" | "quantity", string>>;
+export function validateOrder(d: OrderData): OrderErrors {
+  const e: OrderErrors = {};
   if (d.name.trim().length < 3) e.name = "Indique o seu nome completo.";
   const digits = d.phone.replace(/\D/g, "");
   if (digits.length < 9 || digits.length > 15) e.phone = "Indique um número de telefone válido.";
