@@ -4,7 +4,6 @@ import { STORE, formatMT } from "@/config/store";
 import { GREETING, whatsappUrl, calcTotal } from "@/lib/order";
 import { CtaLink, SectionTitle, WhatsAppIcon } from "./ui";
 const logoWide = { url: "/images/desentox-logo-wide.png" };
-const logo = { url: "/images/desentox-logo.png" };
 const sinkSlow = "/images/sink-slow.jpg";
 const pipeResidue = "/images/pipe-residue.jpg";
 const drainOdor = "/images/drain-odor.jpg";
@@ -276,7 +275,7 @@ export function Footer() {
     <footer className="bg-ink pb-24 pt-12 text-on-dark-muted md:pb-12">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-3">
         <div>
-          <img src={logo.url} alt="DesentoX" loading="lazy" width={120} height={120} className="h-24 w-24 rounded-2xl bg-on-dark p-1" />
+          <img src={logoWide.url} alt="DesentoX" loading="lazy" width={240} height={80} className="h-auto w-48 rounded-xl bg-on-dark p-2" />
           <p className="mt-3 font-display font-bold text-on-dark">{STORE.slogan}</p>
           <p className="mt-1 text-sm">750 MT por embalagem · Entrega gratuita em Maputo e Matola, dentro da área de cobertura.</p>
         </div>
