@@ -1,4 +1,3 @@
-import pote from "@/assets/desentox-pote.png.asset.json";
 
 export const STORE = {
   brand: "DesentoX",
@@ -9,7 +8,7 @@ export const STORE = {
   freeDeliveryAreas: ["Maputo Cidade", "Matola"] as const,
   otherLocation: "Outra localização",
   slogan: "CANOS LIVRES, SEM COMPLICAÇÕES.",
-  productImage: pote.url,
+  productImage: "/images/desentox-pote.png",
   minQty: 1,
   maxQty: 20,
 };

@@ -3,8 +3,8 @@ import { Check, Truck, Home, Building2, Sparkles, Info, Layers, MessageCircle, M
 import { STORE, formatMT } from "@/config/store";
 import { GREETING, whatsappUrl, calcTotal } from "@/lib/order";
 import { CtaLink, SectionTitle, WhatsAppIcon } from "./ui";
-import logoWide from "@/assets/desentox-logo-wide.png.asset.json";
-import logo from "@/assets/desentox-logo.png.asset.json";
+const logoWide = { url: "/images/desentox-logo-wide.png" };
+const logo = { url: "/images/desentox-logo.png" };
 const sinkSlow = "/images/sink-slow.jpg";
 const pipeResidue = "/images/pipe-residue.jpg";
 const drainOdor = "/images/drain-odor.jpg";
