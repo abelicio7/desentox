@@ -1,24 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Header, Hero, ProblemSection, ProductSection, AudienceSection, BenefitsSection, HowToOrder, PricingSection, FAQ, FinalCTA, Footer, WhatsAppFloatingButton, MobileOrderBar } from "@/components/landing/Sections";
+import { OrderForm } from "@/components/landing/OrderForm";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "DesentoX | Desentupidor de Canos em Pó — 750 MT";
+const description = "Conheça a DesentoX, desentupidor de canos em pó por 750 MT. Entrega gratuita em Maputo e Matola, dentro da área de cobertura. Encomende pelo WhatsApp.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [qty, setQty] = useState(1);
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <ProblemSection />
+        <ProductSection />
+        <AudienceSection />
+        <BenefitsSection />
+        <HowToOrder />
+        <PricingSection qty={qty} setQty={setQty} />
+        <OrderForm qty={qty} setQty={setQty} />
+        <FAQ />
+        <FinalCTA />
+      </main>
+      <Footer />
+      <WhatsAppFloatingButton />
+      <MobileOrderBar />
+    </>
   );
 }
